@@ -3,6 +3,11 @@ import CatalogGrid from "@/components/catalog-grid";
 import { featuredProducts } from "@/lib/catalog";
 import { CHANNEL } from "@/lib/constants";
 
+// La portada muestra productos, asi que se arma en cada visita. Si se
+// prerenderiza, el build intenta leer la base y falla donde no hay base
+// todavia, ademas de congelar el catalogo en el HTML.
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const destacados = await featuredProducts(CHANNEL.LOCAL, 8);
 

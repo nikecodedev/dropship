@@ -1,14 +1,19 @@
 // Tienda: perfumeria local (Paraguay) + dropshipping internacional.
-// SQLite en desarrollo. Para produccion cambiar provider a "postgresql".
-// SQLite no soporta enums en Prisma, por eso los estados van como String
-// con los valores validos definidos en src/lib/constants.ts
+//
+// Postgres en desarrollo y en produccion. No usamos SQLite: en Vercel las
+// funciones corren con el filesystem de solo lectura, asi que un archivo .db
+// no tiene donde vivir. Usar el mismo motor en ambos lados evita ademas que
+// aparezcan diferencias recien en produccion.
+//
+// Los estados van como String, no como enum, con los valores validos
+// definidos en src/lib/constants.ts
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

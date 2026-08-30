@@ -29,9 +29,14 @@ export async function listProducts(filters: CatalogFilters) {
       active: true,
       ...(brand ? { brand } : {}),
       ...(gender && gender !== "TODOS" ? { gender } : {}),
+      // En Postgres "contains" distingue mayusculas, asi que la busqueda
+      // necesita mode insensitive para que "yara" encuentre "Yara".
       ...(q
         ? {
-            OR: [{ name: { contains: q } }, { brand: { contains: q } }],
+            OR: [
+              { name: { contains: q, mode: "insensitive" as const } },
+              { brand: { contains: q, mode: "insensitive" as const } },
+            ],
           }
         : {}),
     },
