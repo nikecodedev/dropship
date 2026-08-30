@@ -1,0 +1,144 @@
+// Tienda: perfumeria local (Paraguay) + dropshipping internacional.
+// SQLite en desarrollo. Para produccion cambiar provider a "postgresql".
+// SQLite no soporta enums en Prisma, por eso los estados van como String
+// con los valores validos definidos en src/lib/constants.ts
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Supplier {
+  id        String    @id @default(cuid())
+  name      String
+  // "PROPIO" = stock de Zunilda | "DROPSHIP" = proveedor externo
+  kind      String    @default("DROPSHIP")
+  apiRef    String?
+  notes     String?
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  brand       String
+  description String    @default("")
+  // "LOCAL" = perfumes propios, venta solo Paraguay
+  // "DROPSHIP" = catalogo internacional del proveedor
+  channel     String    @default("LOCAL")
+  // EDT | EDP | PARFUM | EDC | NA
+  concentration String  @default("NA")
+  // FEMENINO | MASCULINO | UNISEX | NA
+  gender      String    @default("NA")
+  // NUEVO_SELLADO | NUEVO_ABIERTO | USADO
+  // Pendiente de confirmar con la clienta para cada producto.
+  condition   String    @default("NUEVO_SELLADO")
+  currency    String    @default("PYG")
+  // JSON array de rutas o URLs de imagen
+  images      String    @default("[]")
+  active      Boolean   @default(true)
+  featured    Boolean   @default(false)
+  supplier    Supplier? @relation(fields: [supplierId], references: [id])
+  supplierId  String?
+  supplierRef String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  variants    Variant[]
+
+  @@index([channel, active])
+  @@index([brand])
+}
+
+model Variant {
+  id         String      @id @default(cuid())
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId  String
+  // Tamano en ml. Null para productos de dropshipping sin tamano.
+  sizeMl     Int?
+  label      String
+  sku        String      @unique
+  // Precio en unidad minima: guaranies enteros (PYG) o centavos (USD)
+  priceMinor Int
+  // Precio tachado, opcional
+  compareAtMinor Int?
+  // Solo relevante en channel LOCAL. En DROPSHIP el stock lo dicta el proveedor.
+  stock      Int         @default(0)
+  active     Boolean     @default(true)
+  items      OrderItem[]
+
+  @@index([productId])
+}
+
+model ShippingZone {
+  id         String  @id @default(cuid())
+  name       String
+  // Texto libre con las ciudades o barrios que cubre
+  coverage   String  @default("")
+  priceMinor Int
+  etaText    String  @default("")
+  active     Boolean @default(true)
+  sortOrder  Int     @default(0)
+}
+
+model Order {
+  id       String @id @default(cuid())
+  code     String @unique
+  // LOCAL | DROPSHIP
+  channel  String @default("LOCAL")
+  currency String @default("PYG")
+
+  customerName  String
+  customerEmail String
+  customerPhone String
+  // Documento / RUC para facturacion
+  customerDoc   String @default("")
+
+  shipCity    String @default("")
+  shipAddress String @default("")
+  shipNotes   String @default("")
+  shipZoneId  String?
+  shipZoneName String @default("")
+
+  subtotalMinor Int
+  shippingMinor Int @default(0)
+  totalMinor    Int
+
+  // PENDIENTE | PAGADO | PREPARANDO | ENVIADO | ENTREGADO | CANCELADO
+  status        String @default("PENDIENTE")
+  // pagopar | transferencia | internacional
+  paymentMethod String
+  // PENDIENTE | PAGADO | FALLIDO | REEMBOLSADO
+  paymentStatus String @default("PENDIENTE")
+  paymentRef    String @default("")
+
+  adminNotes String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  items      OrderItem[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id            String  @id @default(cuid())
+  order         Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId       String
+  variant       Variant? @relation(fields: [variantId], references: [id])
+  variantId     String?
+  // Se guarda el texto al momento de la compra, para que el historial no
+  // cambie si despues se edita el producto.
+  productName   String
+  variantLabel  String
+  unitPriceMinor Int
+  qty           Int
+  lineTotalMinor Int
+
+  @@index([orderId])
+}
