@@ -20,7 +20,10 @@ export const bankTransfer: PaymentProvider = {
     const bank = process.env.BANK_NAME ?? "";
     const account = process.env.BANK_ACCOUNT ?? "";
     const holder = process.env.BANK_HOLDER ?? "";
-    const ruc = process.env.BANK_RUC ?? "";
+    // La titular puede ser persona fisica (cedula) o tener RUC, asi que la
+    // etiqueta se configura junto con el dato.
+    const doc = process.env.BANK_DOC ?? process.env.BANK_RUC ?? "";
+    const docLabel = process.env.BANK_DOC_LABEL ?? "RUC";
     const total = formatMoney(order.totalMinor, order.currency);
 
     const html = [
@@ -29,7 +32,7 @@ export const bankTransfer: PaymentProvider = {
       "<li>Banco: <strong>" + bank + "</strong></li>",
       "<li>Cuenta: <strong>" + account + "</strong></li>",
       "<li>Titular: <strong>" + holder + "</strong></li>",
-      "<li>RUC: <strong>" + ruc + "</strong></li>",
+      "<li>" + docLabel + ": <strong>" + doc + "</strong></li>",
       "</ul>",
       "<p>Usa <strong>" + order.code + "</strong> como concepto y envianos el comprobante",
       "por WhatsApp. Apenas lo verifiquemos preparamos tu pedido.</p>",
