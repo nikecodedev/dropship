@@ -55,8 +55,8 @@ export const PAYMENT_STATUSES = ["PENDIENTE", "PAGADO", "FALLIDO", "REEMBOLSADO"
 export type PaymentStatus = (typeof PAYMENT_STATUSES)[number];
 
 export const SITE = {
-  name: "Aroma Paraguay",
-  tagline: "Perfumeria importada y catalogo internacional",
+  name: "Zunilda Perfumería",
+  tagline: "Perfumería importada en Paraguay",
   whatsapp: "595000000000",
   email: "hola@ejemplo.com.py",
 };

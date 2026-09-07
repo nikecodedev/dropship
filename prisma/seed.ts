@@ -2,16 +2,25 @@ import { PrismaClient } from "@prisma/client";
 
 const db = new PrismaClient();
 
-// Carga inicial.
+// Catalogo real de la tienda, con los datos que confirmo la duena del negocio:
+// precios en guaranies, tamanos y stock por unidad. Todos los frascos son
+// originales, nuevos y sellados en su caja.
 //
-// Los cuatro perfumes son los que paso la clienta. Los PRECIOS SON DE EJEMPLO:
-// hay que reemplazarlos por la lista real antes de salir a produccion.
-// El campo "condition" tambien queda pendiente de confirmar: la lista original
-// traia "Especificar si esta lleno o el % restante" sin completar, asi que no
-// sabemos todavia si son frascos sellados o abiertos.
+// Lo que sigue pendiente esta marcado producto por producto:
+//   - Tommy Girl no tiene precio confirmado, asi que se carga desactivado.
+//   - Donde no sabemos con certeza la concentracion o el genero va "NA" en
+//     vez de un valor inventado. Se completa cuando ella lo confirme.
 
-// priceMinor: guaranies enteros en el catalogo local, centavos de dolar en el internacional.
-type SeedVariant = { sizeMl: number; priceMinor: number; stock: number };
+// priceMinor: guaranies enteros en el catalogo local, centavos de dolar en el
+// internacional. sizeMl en null para productos que no se miden en ml, como
+// los estuches.
+type SeedVariant = {
+  sizeMl: number | null;
+  label?: string;
+  priceMinor: number;
+  stock: number;
+};
+
 type SeedProduct = {
   slug: string;
   brand: string;
@@ -19,23 +28,94 @@ type SeedProduct = {
   description: string;
   concentration: string;
   gender: string;
-  condition: string;
   featured?: boolean;
   variants: SeedVariant[];
 };
 
 const perfumes: SeedProduct[] = [
   {
-    slug: "tommy-hilfiger-tommy-girl",
-    brand: "Tommy Hilfiger",
-    name: "Tommy Girl",
+    slug: "azzaro-pour-homme",
+    brand: "Azzaro",
+    name: "Azzaro Pour Homme",
     description:
-      "Un floral fresco y citrico, clasico de los noventa. Ligero, facil de usar de dia y muy reconocible.",
+      "Fougere aromatico clasico, en el mercado desde 1978. Anis, lavanda y madera de cedro. Un masculino de referencia, elegante y facil de llevar todo el ano.",
     concentration: "EDT",
-    gender: "FEMENINO",
-    condition: "NUEVO_SELLADO",
+    gender: "MASCULINO",
     featured: true,
-    variants: [{ sizeMl: 100, priceMinor: 320000, stock: 3 }],
+    variants: [
+      { sizeMl: 100, priceMinor: 200000, stock: 2 },
+      { sizeMl: 200, priceMinor: 250000, stock: 2 },
+    ],
+  },
+  {
+    slug: "dolce-gabbana-the-one-estuche",
+    brand: "Dolce & Gabbana",
+    name: "The One",
+    description:
+      "Estuche completo con perfume de 100 ml, miniatura de 10 ml, crema corporal de 50 ml y gel de ducha de 50 ml. Oriental floral, con vainilla y ambar. Ideal para regalo.",
+    concentration: "EDP",
+    gender: "FEMENINO",
+    featured: true,
+    variants: [{ sizeMl: null, label: "Estuche completo", priceMinor: 750000, stock: 2 }],
+  },
+  {
+    slug: "cuba-prestige",
+    brand: "Cuba",
+    name: "Prestige",
+    description:
+      "Fragancia de la linea Cuba, muy buscada por su relacion entre precio y duracion. Frasco de 100 ml, original y sellado.",
+    // Concentracion a confirmar con la duena del negocio.
+    concentration: "NA",
+    gender: "MASCULINO",
+    variants: [{ sizeMl: 100, priceMinor: 70000, stock: 2 }],
+  },
+  {
+    slug: "cuba-royal",
+    brand: "Cuba",
+    name: "Royal",
+    description:
+      "Uno de los mas vendidos de la linea Cuba. Frasco de 100 ml, original y sellado.",
+    concentration: "NA",
+    gender: "MASCULINO",
+    variants: [{ sizeMl: 100, priceMinor: 65000, stock: 2 }],
+  },
+  {
+    slug: "cuba-copacabana",
+    brand: "Cuba",
+    name: "Copacabana",
+    description: "Fragancia de la linea Cuba. Frasco de 100 ml, original y sellado.",
+    concentration: "NA",
+    // Genero a confirmar.
+    gender: "NA",
+    variants: [{ sizeMl: 100, priceMinor: 70000, stock: 2 }],
+  },
+  {
+    slug: "nasma-sultan",
+    brand: "Nasma",
+    name: "Sultan",
+    description:
+      "Eau de Parfum arabe de Dubai. Frasco de 100 ml, original y sellado en su caja.",
+    concentration: "EDP",
+    gender: "NA",
+    variants: [{ sizeMl: 100, priceMinor: 250000, stock: 2 }],
+  },
+  {
+    slug: "nasma-bellissima",
+    brand: "Nasma",
+    name: "Bellissima",
+    description: "Eau de Parfum de 100 ml, original y sellado en su caja.",
+    concentration: "EDP",
+    gender: "FEMENINO",
+    variants: [{ sizeMl: 100, priceMinor: 150000, stock: 2 }],
+  },
+  {
+    slug: "aqua-dubai-parfum",
+    brand: "Aqua Dubai",
+    name: "Parfum",
+    description: "Parfum arabe de 100 ml, original y sellado en su caja.",
+    concentration: "PARFUM",
+    gender: "NA",
+    variants: [{ sizeMl: 100, priceMinor: 380000, stock: 2 }],
   },
   {
     slug: "lattafa-yara",
@@ -45,9 +125,60 @@ const perfumes: SeedProduct[] = [
       "Dulce, cremoso y con mucha proyeccion. Uno de los arabes mas pedidos, con notas de orquidea, heliotropo y vainilla.",
     concentration: "EDP",
     gender: "FEMENINO",
-    condition: "NUEVO_SELLADO",
     featured: true,
-    variants: [{ sizeMl: 100, priceMinor: 250000, stock: 5 }],
+    variants: [{ sizeMl: 100, priceMinor: 150000, stock: 2 }],
+  },
+  {
+    slug: "azzaro-chrome",
+    brand: "Azzaro",
+    name: "Chrome",
+    description:
+      "Fresco y limpio, con citricos y notas acuaticas sobre un fondo amaderado. Muy usado de dia y para oficina.",
+    concentration: "EDT",
+    gender: "MASCULINO",
+    variants: [{ sizeMl: 200, priceMinor: 380000, stock: 2 }],
+  },
+  {
+    slug: "montblanc-legend-spirit",
+    brand: "Montblanc",
+    name: "Legend Spirit",
+    description:
+      "Version fresca del Legend clasico. Pomelo rosa, bergamota y notas acuaticas sobre madera blanca.",
+    concentration: "EDT",
+    gender: "MASCULINO",
+    variants: [{ sizeMl: 100, priceMinor: 300000, stock: 2 }],
+  },
+  {
+    slug: "givenchy-ange-ou-demon",
+    brand: "Givenchy",
+    name: "Ange ou Demon",
+    description:
+      "Floral amaderado intenso, con azafran, lirio y vainilla. Elegante, de noche, con muy buena duracion en piel.",
+    concentration: "EDP",
+    gender: "FEMENINO",
+    featured: true,
+    variants: [{ sizeMl: 100, priceMinor: 700000, stock: 7 }],
+  },
+  {
+    slug: "armani-acqua-di-gio",
+    brand: "Giorgio Armani",
+    name: "Acqua di Gio",
+    description:
+      "El acuatico mas conocido del mercado. Citricos, romero y notas marinas. Fresco, versatil y siempre vigente.",
+    concentration: "EDT",
+    gender: "MASCULINO",
+    featured: true,
+    variants: [{ sizeMl: 100, priceMinor: 500000, stock: 2 }],
+  },
+  {
+    slug: "dolce-gabbana-light-blue",
+    brand: "Dolce & Gabbana",
+    name: "Light Blue",
+    description:
+      "Citrico mediterraneo con manzana verde, cedro y almizcle. Fresco y liviano, muy pedido para el verano.",
+    concentration: "EDT",
+    gender: "FEMENINO",
+    variants: [{ sizeMl: 100, priceMinor: 650000, stock: 2 }],
   },
   {
     slug: "lancome-hypnose",
@@ -57,39 +188,19 @@ const perfumes: SeedProduct[] = [
       "Oriental vainillado con flor de la pasion y jazmin. Elegante, de noche, con buena duracion en piel.",
     concentration: "EDP",
     gender: "FEMENINO",
-    condition: "NUEVO_SELLADO",
-    featured: true,
-    variants: [{ sizeMl: 75, priceMinor: 590000, stock: 2 }],
-  },
-  {
-    slug: "azzaro-pour-homme",
-    brand: "Azzaro",
-    name: "Azzaro Pour Homme",
-    description:
-      "Fougere aromatico clasico. Anis, lavanda y madera. Un masculino de referencia desde 1978.",
-    concentration: "EDT",
-    gender: "MASCULINO",
-    condition: "NUEVO_SELLADO",
-    // Tamano a confirmar con la clienta: la lista decia "confirmar tamano en frasco".
-    variants: [{ sizeMl: 100, priceMinor: 420000, stock: 2 }],
+    variants: [{ sizeMl: 75, priceMinor: 700000, stock: 2 }],
   },
 ];
 
-// Ejemplo del catalogo internacional. Se reemplaza por la sincronizacion real
-// cuando se defina el proveedor de dropshipping.
-const internacionales: SeedProduct[] = [
-  {
-    slug: "difusor-aromatico-bambu",
-    brand: "Casa Aroma",
-    name: "Difusor aromatico con varillas de bambu",
-    description:
-      "Producto del catalogo internacional. Despachado por el proveedor, entrega estimada de 15 a 30 dias.",
-    concentration: "NA",
-    gender: "NA",
-    condition: "NUEVO_SELLADO",
-    variants: [{ sizeMl: 100, priceMinor: 1890, stock: 0 }],
-  },
-];
+// Productos que existen en stock pero todavia no tienen precio confirmado.
+// Se dejan desactivados: es preferible que no se vean a que se vendan a un
+// precio que la duena del negocio nunca fijo.
+const sinPrecioConfirmado = ["tommy-hilfiger-tommy-girl"];
+
+// El catalogo internacional queda vacio hasta que se defina el proveedor de
+// dropshipping. El producto de ejemplo que se uso para las pruebas se
+// desactiva, para que nadie pueda comprar algo que no existe.
+const demoDesactivar = ["difusor-aromatico-bambu"];
 
 const zonas = [
   {
@@ -115,55 +226,82 @@ const zonas = [
   },
 ];
 
+function variantLabel(variant: SeedVariant) {
+  if (variant.label) return variant.label;
+  return variant.sizeMl ? variant.sizeMl + " ml" : "Unico";
+}
+
+function variantSku(slug: string, variant: SeedVariant) {
+  const suffix = variant.sizeMl ? String(variant.sizeMl) : "UNICO";
+  return slug.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 14) + "-" + suffix;
+}
+
 async function upsertProduct(product: SeedProduct, channel: "LOCAL" | "DROPSHIP") {
   const currency = channel === "DROPSHIP" ? "USD" : "PYG";
 
+  // A diferencia de la carga inicial, aca si actualizamos: la lista de precios
+  // y el stock cambian, y volver a correr el seed tiene que dejarlos al dia.
+  const data = {
+    brand: product.brand,
+    name: product.name,
+    description: product.description,
+    channel,
+    concentration: product.concentration,
+    gender: product.gender,
+    condition: "NUEVO_SELLADO",
+    currency,
+    featured: product.featured ?? false,
+    active: true,
+  };
+
   const created = await db.product.upsert({
     where: { slug: product.slug },
-    update: {},
-    create: {
-      slug: product.slug,
-      brand: product.brand,
-      name: product.name,
-      description: product.description,
-      channel,
-      concentration: product.concentration,
-      gender: product.gender,
-      condition: product.condition,
-      currency,
-      featured: product.featured ?? false,
-      images: "[]",
-    },
+    update: data,
+    create: { ...data, slug: product.slug, images: "[]" },
   });
 
   for (const variant of product.variants) {
-    const sku = product.slug.toUpperCase().slice(0, 12) + "-" + variant.sizeMl;
+    const sku = variantSku(product.slug, variant);
+    const variantData = {
+      sizeMl: variant.sizeMl,
+      label: variantLabel(variant),
+      priceMinor: variant.priceMinor,
+      stock: variant.stock,
+      active: true,
+    };
     await db.variant.upsert({
       where: { sku },
-      update: {},
-      create: {
-        productId: created.id,
-        sizeMl: variant.sizeMl,
-        label: variant.sizeMl + " ml",
-        sku,
-        priceMinor: variant.priceMinor,
-        stock: variant.stock,
-      },
+      update: variantData,
+      create: { ...variantData, sku, productId: created.id },
     });
   }
 }
 
 async function main() {
   for (const product of perfumes) await upsertProduct(product, "LOCAL");
-  for (const product of internacionales) await upsertProduct(product, "DROPSHIP");
+
+  for (const slug of [...sinPrecioConfirmado, ...demoDesactivar]) {
+    const existe = await db.product.findUnique({ where: { slug } });
+    if (existe) {
+      await db.product.update({ where: { slug }, data: { active: false } });
+      console.log("  desactivado  " + slug);
+    }
+  }
 
   for (const zona of zonas) {
     const existing = await db.shippingZone.findFirst({ where: { name: zona.name } });
-    if (!existing) await db.shippingZone.create({ data: zona });
+    if (existing) {
+      await db.shippingZone.update({ where: { id: existing.id }, data: zona });
+    } else {
+      await db.shippingZone.create({ data: zona });
+    }
   }
 
-  console.log("Carga inicial lista.");
-  console.log("Recorda reemplazar los precios de ejemplo por la lista real.");
+  const activos = await db.product.count({ where: { active: true } });
+  const variantes = await db.variant.count();
+  console.log("");
+  console.log(activos + " productos activos, " + variantes + " presentaciones.");
+  console.log("Pendiente: precio de Tommy Girl para poder publicarlo.");
 }
 
 main()

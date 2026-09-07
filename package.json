@@ -11,7 +11,7 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
     "setup": "prisma db push && npm run db:seed",
-    "db:deploy": "prisma db push && tsx prisma/seed.ts"
+    "db:deploy": "prisma db push && tsx prisma/seed.ts && tsx scripts/imagenes-provisorias.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
