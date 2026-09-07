@@ -190,12 +190,66 @@ const perfumes: SeedProduct[] = [
     gender: "FEMENINO",
     variants: [{ sizeMl: 75, priceMinor: 700000, stock: 2 }],
   },
+
+  // Sets de miniaturas. Los precios y los tamanos estan confirmados, pero
+  // falta el stock de cada uno, asi que se cargan desactivados mas abajo.
+  // Falta tambien saber que fragancias trae cada set: es el dato que decide
+  // la compra, asi que las descripciones quedan a medias hasta tenerlo.
+  {
+    slug: "lattafa-yara-set-miniaturas",
+    brand: "Lattafa",
+    name: "Yara Collection, set de miniaturas",
+    description:
+      "Set de 4 fragancias de la linea Yara en formato de 5 ml. Practico para probar la linea completa o para regalar.",
+    concentration: "EDP",
+    gender: "FEMENINO",
+    variants: [{ sizeMl: null, label: "Set de 4 x 5 ml", priceMinor: 150000, stock: 0 }],
+  },
+  {
+    slug: "versace-set-miniaturas",
+    brand: "Versace",
+    name: "Set de miniaturas",
+    description: "Set con 2 miniaturas de 10 ml, original y sellado en su caja.",
+    concentration: "NA",
+    gender: "NA",
+    variants: [{ sizeMl: null, label: "Set de 2 x 10 ml", priceMinor: 400000, stock: 0 }],
+  },
+  {
+    slug: "dolce-gabbana-set-miniaturas",
+    brand: "Dolce & Gabbana",
+    name: "Set de miniaturas",
+    description: "Set con 5 miniaturas, original y sellado en su caja.",
+    concentration: "NA",
+    gender: "NA",
+    variants: [{ sizeMl: null, label: "Set de 5 miniaturas", priceMinor: 530000, stock: 0 }],
+  },
+  {
+    slug: "bvlgari-omnia-crystalline",
+    brand: "Bvlgari",
+    name: "Omnia Crystalline",
+    description:
+      "Floral fresco y transparente, con pera nashi, bambu y loto. Suave y facil de usar de dia. Miniatura de 15 ml.",
+    concentration: "EDT",
+    gender: "FEMENINO",
+    variants: [{ sizeMl: 15, priceMinor: 260000, stock: 0 }],
+  },
 ];
 
 // Productos que existen en stock pero todavia no tienen precio confirmado.
 // Se dejan desactivados: es preferible que no se vean a que se vendan a un
 // precio que la duena del negocio nunca fijo.
 const sinPrecioConfirmado = ["tommy-hilfiger-tommy-girl"];
+
+// Sets con precio confirmado pero sin stock. Se dejan ocultos: mostrarlos
+// agotados desde el dia uno no vende nada y ensucia el catalogo. Cuando
+// llegue la cantidad, se pone el stock arriba y se saca el slug de esta
+// lista.
+const sinStockConfirmado = [
+  "lattafa-yara-set-miniaturas",
+  "versace-set-miniaturas",
+  "dolce-gabbana-set-miniaturas",
+  "bvlgari-omnia-crystalline",
+];
 
 // El catalogo internacional queda vacio hasta que se defina el proveedor de
 // dropshipping. El producto de ejemplo que se uso para las pruebas se
@@ -280,7 +334,7 @@ async function upsertProduct(product: SeedProduct, channel: "LOCAL" | "DROPSHIP"
 async function main() {
   for (const product of perfumes) await upsertProduct(product, "LOCAL");
 
-  for (const slug of [...sinPrecioConfirmado, ...demoDesactivar]) {
+  for (const slug of [...sinPrecioConfirmado, ...sinStockConfirmado, ...demoDesactivar]) {
     const existe = await db.product.findUnique({ where: { slug } });
     if (existe) {
       await db.product.update({ where: { slug }, data: { active: false } });
@@ -301,7 +355,7 @@ async function main() {
   const variantes = await db.variant.count();
   console.log("");
   console.log(activos + " productos activos, " + variantes + " presentaciones.");
-  console.log("Pendiente: precio de Tommy Girl para poder publicarlo.");
+  console.log("Pendientes: precio de Tommy Girl y stock de los cuatro sets.");
 }
 
 main()
