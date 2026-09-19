@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { Channel } from "@/lib/constants";
 
 export type CartItem = {
@@ -14,7 +14,12 @@ export type CartItem = {
   channel: Channel;
   image: string | null;
   qty: number;
+  // Tope de unidades segun el stock que se vio al agregar. En el catalogo
+  // internacional el stock lo maneja el proveedor, asi que no hay tope.
+  maxQty?: number;
 };
+
+type AddResult = { ok: true } | { ok: false; reason: "conflict" | "max" };
 
 type CartState = {
   items: CartItem[];
@@ -22,19 +27,23 @@ type CartState = {
   count: number;
   subtotalMinor: number;
   currency: "PYG" | "USD";
-  add: (item: Omit<CartItem, "qty">, qty?: number) => { ok: boolean; conflict?: boolean };
+  ready: boolean;
+  isOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
+  add: (item: Omit<CartItem, "qty">, qty?: number) => AddResult;
   setQty: (variantId: string, qty: number) => void;
   remove: (variantId: string) => void;
   clear: () => void;
-  ready: boolean;
 };
 
-const STORAGE_KEY = "carrito-v1";
+const STORAGE_KEY = "zunilda-carrito-v2";
 const CartContext = createContext<CartState | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [ready, setReady] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -55,12 +64,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [items, ready]);
 
+  // Con el carrito abierto no se scrollea la pagina de fondo.
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const openCart = useCallback(() => setIsOpen(true), []);
+  const closeCart = useCallback(() => setIsOpen(false), []);
+
   const value = useMemo<CartState>(() => {
     const channel = items[0]?.channel ?? null;
+
     return {
       items,
       channel,
       ready,
+      isOpen,
+      openCart,
+      closeCart,
       count: items.reduce((sum, i) => sum + i.qty, 0),
       subtotalMinor: items.reduce((sum, i) => sum + i.priceMinor * i.qty, 0),
       currency: items[0]?.currency ?? "PYG",
@@ -69,12 +93,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         // Un pedido no puede mezclar perfumeria local con catalogo
         // internacional: distinto envio, distinto plazo y distinto medio de
         // pago. Se avisa en vez de dejar armar un carrito imposible.
-        if (channel && item.channel !== channel) return { ok: false, conflict: true };
+        if (channel && item.channel !== channel) return { ok: false, reason: "conflict" };
+
+        const existing = items.find((i) => i.variantId === item.variantId);
+        const nextQty = (existing?.qty ?? 0) + qty;
+        if (item.maxQty !== undefined && nextQty > item.maxQty) {
+          return { ok: false, reason: "max" };
+        }
+
         setItems((prev) => {
           const found = prev.find((i) => i.variantId === item.variantId);
           if (found) {
             return prev.map((i) =>
-              i.variantId === item.variantId ? { ...i, qty: i.qty + qty } : i,
+              i.variantId === item.variantId ? { ...i, qty: i.qty + qty, maxQty: item.maxQty } : i,
             );
           }
           return [...prev, { ...item, qty }];
@@ -86,7 +117,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setItems((prev) =>
           qty <= 0
             ? prev.filter((i) => i.variantId !== variantId)
-            : prev.map((i) => (i.variantId === variantId ? { ...i, qty } : i)),
+            : prev.map((i) => {
+                if (i.variantId !== variantId) return i;
+                const capped = i.maxQty !== undefined ? Math.min(qty, i.maxQty) : qty;
+                return { ...i, qty: capped };
+              }),
         );
       },
 
@@ -98,7 +133,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setItems([]);
       },
     };
-  }, [items, ready]);
+  }, [items, ready, isOpen, openCart, closeCart]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

@@ -1,6 +1,7 @@
 import { createHash } from "crypto";
 import type { CheckoutOrder, CheckoutResult, PaymentProvider } from "./types";
 import { toMajor } from "@/lib/money";
+import { orderPath } from "@/lib/order-token";
 
 // Pagopar - cobro local en Paraguay.
 // Cubre tarjetas, Tigo Money, Personal Pay, transferencia y bocas de cobranza
@@ -66,7 +67,7 @@ export const pagopar: PaymentProvider = {
       id_pedido_comercio: order.code,
       descripcion_resumen: "Pedido " + order.code,
       fecha_maxima_pago: maxDate,
-      url_retorno: site + "/pedido/" + order.code,
+      url_retorno: site + orderPath(order.code),
       comprador: {
         ruc: order.customerDoc,
         email: order.customerEmail,

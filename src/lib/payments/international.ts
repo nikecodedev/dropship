@@ -13,7 +13,7 @@ import type { CheckoutOrder, CheckoutResult, PaymentProvider } from "./types";
 export const international: PaymentProvider = {
   id: "internacional",
   label: "Tarjeta internacional",
-  help: "Pago en dolares con tarjeta emitida fuera de Paraguay.",
+  help: "Pago en dólares con tarjeta emitida fuera de Paraguay.",
   channels: ["DROPSHIP"],
 
   isConfigured() {

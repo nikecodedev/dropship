@@ -38,7 +38,7 @@ const perfumes: SeedProduct[] = [
     brand: "Azzaro",
     name: "Azzaro Pour Homme",
     description:
-      "Fougere aromatico clasico, en el mercado desde 1978. Anis, lavanda y madera de cedro. Un masculino de referencia, elegante y facil de llevar todo el ano.",
+      "Fougère aromático clásico, en el mercado desde 1978. Anís, lavanda y madera de cedro. Un masculino de referencia, elegante y fácil de llevar todo el año.",
     concentration: "EDT",
     gender: "MASCULINO",
     featured: true,
@@ -52,7 +52,7 @@ const perfumes: SeedProduct[] = [
     brand: "Dolce & Gabbana",
     name: "The One",
     description:
-      "Estuche completo con perfume de 100 ml, miniatura de 10 ml, crema corporal de 50 ml y gel de ducha de 50 ml. Oriental floral, con vainilla y ambar. Ideal para regalo.",
+      "Estuche completo con perfume de 100 ml, miniatura de 10 ml, crema corporal de 50 ml y gel de ducha de 50 ml. Oriental floral, con vainilla y ámbar. Ideal para regalo.",
     concentration: "EDP",
     gender: "FEMENINO",
     featured: true,
@@ -63,7 +63,7 @@ const perfumes: SeedProduct[] = [
     brand: "Cuba",
     name: "Prestige",
     description:
-      "Fragancia de la linea Cuba, muy buscada por su relacion entre precio y duracion. Frasco de 100 ml, original y sellado.",
+      "Fragancia de la línea Cuba, muy buscada por su relación entre precio y duración. Frasco de 100 ml, original y sellado.",
     // Concentracion a confirmar con la duena del negocio.
     concentration: "NA",
     gender: "MASCULINO",
@@ -74,7 +74,7 @@ const perfumes: SeedProduct[] = [
     brand: "Cuba",
     name: "Royal",
     description:
-      "Uno de los mas vendidos de la linea Cuba. Frasco de 100 ml, original y sellado.",
+      "Uno de los más vendidos de la línea Cuba. Frasco de 100 ml, original y sellado.",
     concentration: "NA",
     gender: "MASCULINO",
     variants: [{ sizeMl: 100, priceMinor: 65000, stock: 2 }],
@@ -83,7 +83,7 @@ const perfumes: SeedProduct[] = [
     slug: "cuba-copacabana",
     brand: "Cuba",
     name: "Copacabana",
-    description: "Fragancia de la linea Cuba. Frasco de 100 ml, original y sellado.",
+    description: "Fragancia de la línea Cuba. Frasco de 100 ml, original y sellado.",
     concentration: "NA",
     // Genero a confirmar.
     gender: "NA",
@@ -94,7 +94,7 @@ const perfumes: SeedProduct[] = [
     brand: "Nasma",
     name: "Sultan",
     description:
-      "Eau de Parfum arabe de Dubai. Frasco de 100 ml, original y sellado en su caja.",
+      "Eau de Parfum árabe de Dubái. Frasco de 100 ml, original y sellado en su caja.",
     concentration: "EDP",
     gender: "NA",
     variants: [{ sizeMl: 100, priceMinor: 250000, stock: 2 }],
@@ -112,7 +112,7 @@ const perfumes: SeedProduct[] = [
     slug: "aqua-dubai-parfum",
     brand: "Aqua Dubai",
     name: "Parfum",
-    description: "Parfum arabe de 100 ml, original y sellado en su caja.",
+    description: "Parfum árabe de 100 ml, original y sellado en su caja.",
     concentration: "PARFUM",
     gender: "NA",
     variants: [{ sizeMl: 100, priceMinor: 380000, stock: 2 }],
@@ -122,7 +122,7 @@ const perfumes: SeedProduct[] = [
     brand: "Lattafa",
     name: "Yara",
     description:
-      "Dulce, cremoso y con mucha proyeccion. Uno de los arabes mas pedidos, con notas de orquidea, heliotropo y vainilla.",
+      "Dulce, cremoso y con mucha proyección. Uno de los árabes más pedidos, con notas de orquídea, heliotropo y vainilla.",
     concentration: "EDP",
     gender: "FEMENINO",
     featured: true,
@@ -133,7 +133,7 @@ const perfumes: SeedProduct[] = [
     brand: "Azzaro",
     name: "Chrome",
     description:
-      "Fresco y limpio, con citricos y notas acuaticas sobre un fondo amaderado. Muy usado de dia y para oficina.",
+      "Fresco y limpio, con cítricos y notas acuáticas sobre un fondo amaderado. Muy usado de día y para la oficina.",
     concentration: "EDT",
     gender: "MASCULINO",
     variants: [{ sizeMl: 200, priceMinor: 380000, stock: 2 }],
@@ -143,7 +143,7 @@ const perfumes: SeedProduct[] = [
     brand: "Montblanc",
     name: "Legend Spirit",
     description:
-      "Version fresca del Legend clasico. Pomelo rosa, bergamota y notas acuaticas sobre madera blanca.",
+      "Versión fresca del Legend clásico. Pomelo rosa, bergamota y notas acuáticas sobre madera blanca.",
     concentration: "EDT",
     gender: "MASCULINO",
     variants: [{ sizeMl: 100, priceMinor: 300000, stock: 2 }],
@@ -151,9 +151,9 @@ const perfumes: SeedProduct[] = [
   {
     slug: "givenchy-ange-ou-demon",
     brand: "Givenchy",
-    name: "Ange ou Demon",
+    name: "Ange ou Démon",
     description:
-      "Floral amaderado intenso, con azafran, lirio y vainilla. Elegante, de noche, con muy buena duracion en piel.",
+      "Floral amaderado intenso, con azafrán, lirio y vainilla. Elegante, de noche, con muy buena duración en piel.",
     concentration: "EDP",
     gender: "FEMENINO",
     featured: true,
@@ -162,9 +162,9 @@ const perfumes: SeedProduct[] = [
   {
     slug: "armani-acqua-di-gio",
     brand: "Giorgio Armani",
-    name: "Acqua di Gio",
+    name: "Acqua di Giò",
     description:
-      "El acuatico mas conocido del mercado. Citricos, romero y notas marinas. Fresco, versatil y siempre vigente.",
+      "El acuático más conocido del mercado. Cítricos, romero y notas marinas. Fresco, versátil y siempre vigente.",
     concentration: "EDT",
     gender: "MASCULINO",
     featured: true,
@@ -175,17 +175,17 @@ const perfumes: SeedProduct[] = [
     brand: "Dolce & Gabbana",
     name: "Light Blue",
     description:
-      "Citrico mediterraneo con manzana verde, cedro y almizcle. Fresco y liviano, muy pedido para el verano.",
+      "Cítrico mediterráneo con manzana verde, cedro y almizcle. Fresco y liviano, muy pedido para el verano.",
     concentration: "EDT",
     gender: "FEMENINO",
     variants: [{ sizeMl: 100, priceMinor: 650000, stock: 2 }],
   },
   {
     slug: "lancome-hypnose",
-    brand: "Lancome",
-    name: "Hypnose",
+    brand: "Lancôme",
+    name: "Hypnôse",
     description:
-      "Oriental vainillado con flor de la pasion y jazmin. Elegante, de noche, con buena duracion en piel.",
+      "Oriental vainillado con flor de la pasión y jazmín. Elegante, de noche, con buena duración en piel.",
     concentration: "EDP",
     gender: "FEMENINO",
     variants: [{ sizeMl: 75, priceMinor: 700000, stock: 2 }],
@@ -200,7 +200,7 @@ const perfumes: SeedProduct[] = [
     brand: "Lattafa",
     name: "Yara Collection, set de miniaturas",
     description:
-      "Set de 4 fragancias de la linea Yara en formato de 5 ml. Practico para probar la linea completa o para regalar.",
+      "Set de 4 fragancias de la línea Yara en formato de 5 ml. Práctico para probar la línea completa o para regalar.",
     concentration: "EDP",
     gender: "FEMENINO",
     variants: [{ sizeMl: null, label: "Set de 4 x 5 ml", priceMinor: 150000, stock: 0 }],
@@ -228,7 +228,7 @@ const perfumes: SeedProduct[] = [
     brand: "Bvlgari",
     name: "Omnia Crystalline",
     description:
-      "Floral fresco y transparente, con pera nashi, bambu y loto. Suave y facil de usar de dia. Miniatura de 15 ml.",
+      "Floral fresco y transparente, con pera nashi, bambú y loto. Suave y fácil de usar de día. Miniatura de 15 ml.",
     concentration: "EDT",
     gender: "FEMENINO",
     variants: [{ sizeMl: 15, priceMinor: 260000, stock: 0 }],
@@ -258,24 +258,27 @@ const demoDesactivar = ["difusor-aromatico-bambu"];
 
 const zonas = [
   {
-    name: "Asuncion",
-    coverage: "Microcentro, Villa Morra, Carmelitas, Recoleta",
+    name: "Asunción",
+    legacyName: "Asuncion",
+    coverage: "Microcentro, Villa Morra, Carmelitas, Recoleta y alrededores",
     priceMinor: 25000,
     etaText: "24 a 48 horas",
     sortOrder: 0,
   },
   {
-    name: "Gran Asuncion",
-    coverage: "Lambare, Fernando de la Mora, San Lorenzo, Luque, Capiata",
+    name: "Gran Asunción",
+    legacyName: "Gran Asuncion",
+    coverage: "Lambaré, Fernando de la Mora, San Lorenzo, Luque, Capiatá",
     priceMinor: 35000,
     etaText: "24 a 48 horas",
     sortOrder: 1,
   },
   {
-    name: "Interior del pais",
-    coverage: "Por encomienda a todo el pais",
+    name: "Interior del país",
+    legacyName: "Interior del pais",
+    coverage: "Por encomienda a todo el país",
     priceMinor: 45000,
-    etaText: "2 a 4 dias habiles",
+    etaText: "2 a 4 días hábiles",
     sortOrder: 2,
   },
 ];
@@ -342,8 +345,10 @@ async function main() {
     }
   }
 
-  for (const zona of zonas) {
-    const existing = await db.shippingZone.findFirst({ where: { name: zona.name } });
+  for (const { legacyName, ...zona } of zonas) {
+    const existing = await db.shippingZone.findFirst({
+      where: { name: { in: [zona.name, legacyName] } },
+    });
     if (existing) {
       await db.shippingZone.update({ where: { id: existing.id }, data: zona });
     } else {

@@ -9,7 +9,7 @@ const MINOR_UNITS: Record<Currency, number> = { PYG: 1, USD: 100 };
 export function formatMoney(minor: number, currency: Currency = "PYG"): string {
   const value = minor / MINOR_UNITS[currency];
   if (currency === "PYG") {
-    return `Gs ${new Intl.NumberFormat("es-PY", { maximumFractionDigits: 0 }).format(value)}`;
+    return "Gs. " + new Intl.NumberFormat("es-PY", { maximumFractionDigits: 0 }).format(value);
   }
   return new Intl.NumberFormat("es-PY", {
     style: "currency",

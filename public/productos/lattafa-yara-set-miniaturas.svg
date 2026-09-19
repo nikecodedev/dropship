@@ -1,46 +1,137 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Lattafa Yara Collection, set de miniaturas">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Lattafa Yara Collection, set de miniaturas">
+
   <defs>
     <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#efe9f0"/>
-      <stop offset="100%" stop-color="#ffffff"/>
+      <stop offset="0" stop-color="#f6f0e6"/>
+      <stop offset="1" stop-color="#ece2d3"/>
     </linearGradient>
-    <linearGradient id="liquido" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#a98bb8"/>
-      <stop offset="100%" stop-color="#6b4c7a"/>
+    <linearGradient id="arco" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fae9ed"/>
+      <stop offset="1" stop-color="#f1dedb"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f3c2cf" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#f3c2cf" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="podioCuerpo" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#cdbfa8"/>
+      <stop offset="0.45" stop-color="#e6dccb"/>
+      <stop offset="1" stop-color="#c7b8a0"/>
+    </linearGradient>
+    <linearGradient id="podioTapa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1e9dc"/>
+      <stop offset="1" stop-color="#e2d6c3"/>
+    </linearGradient>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5cad5"/>
+      <stop offset="0.55" stop-color="#f0b3c3"/>
+      <stop offset="1" stop-color="#bb8c98"/>
+    </linearGradient>
+    <linearGradient id="liquidoLado" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity="0.18"/>
+      <stop offset="0.35" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.7" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.22"/>
+    </linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="0.18" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="0.9" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.15"/>
     </linearGradient>
     <linearGradient id="brillo" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
+    <linearGradient id="tapa" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7d5f27"/>
+      <stop offset="0.38" stop-color="#e9d08f"/>
+      <stop offset="0.7" stop-color="#b48c46"/>
+      <stop offset="1" stop-color="#6a5021"/>
+    </linearGradient>
+    <linearGradient id="caja" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#141414"/>
+      <stop offset="0.5" stop-color="#2c2a27"/>
+      <stop offset="1" stop-color="#0d0d0d"/>
+    </linearGradient>
+    <filter id="sombra" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="sombraSuave" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
   </defs>
 
-  <rect width="600" height="800" fill="url(#fondo)"/>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+  <path d="M170 792 L170 380 A230 230 0 0 1 630 380 L630 792 Z" fill="url(#arco)"/>
+  <ellipse cx="400" cy="470" rx="250" ry="250" fill="url(#halo)"/>
+  <rect x="140" y="792" width="520" height="208" fill="url(#podioCuerpo)"/>
+  <ellipse cx="400" cy="792" rx="260" ry="40" fill="url(#podioTapa)"/>
+  <ellipse cx="400" cy="792" rx="260" ry="40" fill="none" stroke="#fff" stroke-opacity="0.6" stroke-width="1.5"/>
 
-  <ellipse cx="300" cy="612" rx="132" ry="16" fill="#33203c" opacity="0.10"/>
 
-  <!-- tapa -->
-  <rect x="264" y="128" width="72" height="60" rx="8" fill="#6b4c7a"/>
-  <rect x="264" y="128" width="24" height="60" rx="8" fill="#ffffff" opacity="0.18"/>
+  <linearGradient id="mini0" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f5cad5"/>
+    <stop offset="1" stop-color="#c08f9c"/>
+  </linearGradient>
+  <clipPath id="clip0"><path d="M206 562 H270 Q282 562 282 574 V780 Q282 792 270 792 H206 Q194 792 194 780 V574 Q194 562 206 562 Z"/></clipPath>
+  <ellipse cx="238" cy="794" rx="54" ry="8" fill="#3b2f1f" opacity="0.25" filter="url(#sombra)"/>
+  <rect x="220.4" y="548" width="35.2" height="16" fill="url(#tapa)" opacity="0.8"/>
+  <rect x="208.07999999999998" y="504" width="59.84" height="46" rx="6" fill="url(#tapa)"/>
+  <path d="M206 562 H270 Q282 562 282 574 V780 Q282 792 270 792 H206 Q194 792 194 780 V574 Q194 562 206 562 Z" fill="#ffffff" fill-opacity="0.35"/>
+  <path d="M208 584 H268 Q276 584 276 592 V778 Q276 786 268 786 H208 Q200 786 200 778 V592 Q200 584 208 584 Z" fill="url(#mini0)"/>
+  <g clip-path="url(#clip0)"><path d="M206 562 H270 Q282 562 282 574 V780 Q282 792 270 792 H206 Q194 792 194 780 V574 Q194 562 206 562 Z" fill="url(#vidrio)"/>
+    <rect x="200" y="570" width="10.559999999999999" height="214" rx="4" fill="url(#brillo)" opacity="0.8"/></g>
+  <path d="M206 562 H270 Q282 562 282 574 V780 Q282 792 270 792 H206 Q194 792 194 780 V574 Q194 562 206 562 Z" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="2"/>
+  <path d="M206 562 H270 Q282 562 282 574 V780 Q282 792 270 792 H206 Q194 792 194 780 V574 Q194 562 206 562 Z" fill="none" stroke="#4a3d2b" stroke-opacity="0.18" stroke-width="1"/>
+  <linearGradient id="mini1" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#baa2cd"/>
+    <stop offset="1" stop-color="#7d6293"/>
+  </linearGradient>
+  <clipPath id="clip1"><path d="M314 522 H378 Q390 522 390 534 V780 Q390 792 378 792 H314 Q302 792 302 780 V534 Q302 522 314 522 Z"/></clipPath>
+  <ellipse cx="346" cy="794" rx="54" ry="8" fill="#3b2f1f" opacity="0.25" filter="url(#sombra)"/>
+  <rect x="328.4" y="508" width="35.2" height="16" fill="url(#tapa)" opacity="0.8"/>
+  <rect x="316.08" y="464" width="59.84" height="46" rx="6" fill="url(#tapa)"/>
+  <path d="M314 522 H378 Q390 522 390 534 V780 Q390 792 378 792 H314 Q302 792 302 780 V534 Q302 522 314 522 Z" fill="#ffffff" fill-opacity="0.35"/>
+  <path d="M316 544 H376 Q384 544 384 552 V778 Q384 786 376 786 H316 Q308 786 308 778 V552 Q308 544 316 544 Z" fill="url(#mini1)"/>
+  <g clip-path="url(#clip1)"><path d="M314 522 H378 Q390 522 390 534 V780 Q390 792 378 792 H314 Q302 792 302 780 V534 Q302 522 314 522 Z" fill="url(#vidrio)"/>
+    <rect x="308" y="530" width="10.559999999999999" height="254" rx="4" fill="url(#brillo)" opacity="0.8"/></g>
+  <path d="M314 522 H378 Q390 522 390 534 V780 Q390 792 378 792 H314 Q302 792 302 780 V534 Q302 522 314 522 Z" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="2"/>
+  <path d="M314 522 H378 Q390 522 390 534 V780 Q390 792 378 792 H314 Q302 792 302 780 V534 Q302 522 314 522 Z" fill="none" stroke="#4a3d2b" stroke-opacity="0.18" stroke-width="1"/>
+  <linearGradient id="mini2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f7f4ee"/>
+    <stop offset="1" stop-color="#c3bfb8"/>
+  </linearGradient>
+  <clipPath id="clip2"><path d="M422 542 H486 Q498 542 498 554 V780 Q498 792 486 792 H422 Q410 792 410 780 V554 Q410 542 422 542 Z"/></clipPath>
+  <ellipse cx="454" cy="794" rx="54" ry="8" fill="#3b2f1f" opacity="0.25" filter="url(#sombra)"/>
+  <rect x="436.4" y="528" width="35.2" height="16" fill="url(#tapa)" opacity="0.8"/>
+  <rect x="424.08" y="484" width="59.84" height="46" rx="6" fill="url(#tapa)"/>
+  <path d="M422 542 H486 Q498 542 498 554 V780 Q498 792 486 792 H422 Q410 792 410 780 V554 Q410 542 422 542 Z" fill="#ffffff" fill-opacity="0.35"/>
+  <path d="M424 564 H484 Q492 564 492 572 V778 Q492 786 484 786 H424 Q416 786 416 778 V572 Q416 564 424 564 Z" fill="url(#mini2)"/>
+  <g clip-path="url(#clip2)"><path d="M422 542 H486 Q498 542 498 554 V780 Q498 792 486 792 H422 Q410 792 410 780 V554 Q410 542 422 542 Z" fill="url(#vidrio)"/>
+    <rect x="416" y="550" width="10.559999999999999" height="234" rx="4" fill="url(#brillo)" opacity="0.8"/></g>
+  <path d="M422 542 H486 Q498 542 498 554 V780 Q498 792 486 792 H422 Q410 792 410 780 V554 Q410 542 422 542 Z" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="2"/>
+  <path d="M422 542 H486 Q498 542 498 554 V780 Q498 792 486 792 H422 Q410 792 410 780 V554 Q410 542 422 542 Z" fill="none" stroke="#4a3d2b" stroke-opacity="0.18" stroke-width="1"/>
+  <linearGradient id="mini3" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e9c290"/>
+    <stop offset="1" stop-color="#b3864d"/>
+  </linearGradient>
+  <clipPath id="clip3"><path d="M530 507 H594 Q606 507 606 519 V780 Q606 792 594 792 H530 Q518 792 518 780 V519 Q518 507 530 507 Z"/></clipPath>
+  <ellipse cx="562" cy="794" rx="54" ry="8" fill="#3b2f1f" opacity="0.25" filter="url(#sombra)"/>
+  <rect x="544.4" y="493" width="35.2" height="16" fill="url(#tapa)" opacity="0.8"/>
+  <rect x="532.08" y="449" width="59.84" height="46" rx="6" fill="url(#tapa)"/>
+  <path d="M530 507 H594 Q606 507 606 519 V780 Q606 792 594 792 H530 Q518 792 518 780 V519 Q518 507 530 507 Z" fill="#ffffff" fill-opacity="0.35"/>
+  <path d="M532 529 H592 Q600 529 600 537 V778 Q600 786 592 786 H532 Q524 786 524 778 V537 Q524 529 532 529 Z" fill="url(#mini3)"/>
+  <g clip-path="url(#clip3)"><path d="M530 507 H594 Q606 507 606 519 V780 Q606 792 594 792 H530 Q518 792 518 780 V519 Q518 507 530 507 Z" fill="url(#vidrio)"/>
+    <rect x="524" y="515" width="10.559999999999999" height="269" rx="4" fill="url(#brillo)" opacity="0.8"/></g>
+  <path d="M530 507 H594 Q606 507 606 519 V780 Q606 792 594 792 H530 Q518 792 518 780 V519 Q518 507 530 507 Z" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="2"/>
+  <path d="M530 507 H594 Q606 507 606 519 V780 Q606 792 594 792 H530 Q518 792 518 780 V519 Q518 507 530 507 Z" fill="none" stroke="#4a3d2b" stroke-opacity="0.18" stroke-width="1"/>
 
-  <!-- cuello -->
-  <rect x="282" y="186" width="36" height="34" fill="#6b4c7a" opacity="0.55"/>
 
-  <!-- cuerpo del frasco -->
-  <rect x="196" y="218" width="208" height="386" rx="26" fill="#ffffff"/>
-  <rect x="196" y="218" width="208" height="386" rx="26" fill="none" stroke="#6b4c7a" stroke-opacity="0.35" stroke-width="2"/>
-
-  <!-- liquido -->
-  <path d="M 208 330 L 392 330 L 392 578 A 14 14 0 0 1 378 592 L 222 592 A 14 14 0 0 1 208 578 Z" fill="url(#liquido)" opacity="0.9"/>
-  <rect x="208" y="326" width="184" height="10" rx="5" fill="#a98bb8" opacity="0.6"/>
-
-  <!-- brillo del vidrio -->
-  <rect x="212" y="236" width="60" height="350" rx="20" fill="url(#brillo)"/>
-
-  <text x="300" y="648" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="5" fill="#33203c" opacity="0.65">LATTAFA</text>
-  <text x="300" y="682" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#33203c">Yara Collection,</text>
-    <text x="300" y="716" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#33203c">set de miniaturas</text>
-  <text x="300" y="754" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="2" fill="#33203c" opacity="0.6">Set de 4 x 5 ml</text>
-
-  <text x="300" y="786" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="#33203c" opacity="0.35">IMAGEN PROVISORIA</text>
+  <text x="400" y="864" text-anchor="middle" font-family="Jost, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" letter-spacing="4" fill="#6b5a3e">LATTAFA</text>
+  <text x="400" y="900" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-style="italic" font-size="28" fill="#3a3024">Yara Collection, set de</text>
+  <text x="400" y="930" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-style="italic" font-size="28" fill="#3a3024">miniaturas</text>
+  <text x="400" y="978" text-anchor="middle" font-family="Jost, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" letter-spacing="4" fill="#7d705c" opacity="0.7">IMAGEN ILUSTRATIVA</text>
 </svg>
