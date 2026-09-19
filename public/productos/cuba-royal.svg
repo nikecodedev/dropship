@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Azzaro Azzaro Pour Homme">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Cuba Royal">
   <defs>
     <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#e8eded"/>
@@ -37,9 +37,9 @@
   <!-- brillo del vidrio -->
   <rect x="212" y="236" width="60" height="350" rx="20" fill="url(#brillo)"/>
 
-  <text x="300" y="666" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="5" fill="#1e3030" opacity="0.65">AZZARO</text>
-  <text x="300" y="700" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#1e3030">Azzaro Pour Homme</text>
-  <text x="300" y="738" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="2" fill="#1e3030" opacity="0.6">100 ml · 200 ml</text>
+  <text x="300" y="666" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="5" fill="#1e3030" opacity="0.65">CUBA</text>
+  <text x="300" y="700" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#1e3030">Royal</text>
+  <text x="300" y="738" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="2" fill="#1e3030" opacity="0.6">100 ml</text>
 
   <text x="300" y="786" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="#1e3030" opacity="0.35">IMAGEN PROVISORIA</text>
 </svg>

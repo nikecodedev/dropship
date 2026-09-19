@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Lattafa Yara Collection, set de miniaturas">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#efe9f0"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="liquido" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a98bb8"/>
+      <stop offset="100%" stop-color="#6b4c7a"/>
+    </linearGradient>
+    <linearGradient id="brillo" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="url(#fondo)"/>
+
+  <ellipse cx="300" cy="612" rx="132" ry="16" fill="#33203c" opacity="0.10"/>
+
+  <!-- tapa -->
+  <rect x="264" y="128" width="72" height="60" rx="8" fill="#6b4c7a"/>
+  <rect x="264" y="128" width="24" height="60" rx="8" fill="#ffffff" opacity="0.18"/>
+
+  <!-- cuello -->
+  <rect x="282" y="186" width="36" height="34" fill="#6b4c7a" opacity="0.55"/>
+
+  <!-- cuerpo del frasco -->
+  <rect x="196" y="218" width="208" height="386" rx="26" fill="#ffffff"/>
+  <rect x="196" y="218" width="208" height="386" rx="26" fill="none" stroke="#6b4c7a" stroke-opacity="0.35" stroke-width="2"/>
+
+  <!-- liquido -->
+  <path d="M 208 330 L 392 330 L 392 578 A 14 14 0 0 1 378 592 L 222 592 A 14 14 0 0 1 208 578 Z" fill="url(#liquido)" opacity="0.9"/>
+  <rect x="208" y="326" width="184" height="10" rx="5" fill="#a98bb8" opacity="0.6"/>
+
+  <!-- brillo del vidrio -->
+  <rect x="212" y="236" width="60" height="350" rx="20" fill="url(#brillo)"/>
+
+  <text x="300" y="648" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="5" fill="#33203c" opacity="0.65">LATTAFA</text>
+  <text x="300" y="682" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#33203c">Yara Collection,</text>
+    <text x="300" y="716" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#33203c">set de miniaturas</text>
+  <text x="300" y="754" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" letter-spacing="2" fill="#33203c" opacity="0.6">Set de 4 x 5 ml</text>
+
+  <text x="300" y="786" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="#33203c" opacity="0.35">IMAGEN PROVISORIA</text>
+</svg>
